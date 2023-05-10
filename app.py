@@ -1,46 +1,38 @@
-from flask import Flask,render_template,url_for,request,redirect, make_response
-import json
-from time import time
+from flask import Flask, render_template,url_for
+import requests
+import threading
 import time
 
-from random import random
-from flask import Flask, render_template, make_response
-import serial
-
 app = Flask(__name__)
-ser = serial.Serial('COM10', 115200)
 
-if ser.isOpen==False:
-    ser.open()
-temp = []
+def get_data():
+    api_url = 'http://192.168.213.36'
+    response = requests.get(api_url)
+    data = response.json()
+    temperature = data.get('Temperature')
+    humidity = data.get('Humidity')
+    return temperature, humidity
 
-    
-@app.route('/', methods=["GET", "POST"])
-def main():
-    return render_template('index.html')
+@app.route('/')
+def index():
+    temperature, humidity = get_data()
+    return render_template('index.html', temperature=temperature, humidity=humidity)
 
+@app.before_request
+def activate_job():
+    if not hasattr(app, 'temperature'):
+        def update_data():
+            while True:
+                temperature, humidity = get_data()
+                time.sleep(1)
+                app.temperature = temperature
+                app.humidity = humidity
+        thread = threading.Thread(target=update_data)
+        thread.start()
 
-while True:
-    read = ser.readline().decode().rstrip()
-    temp = read.split()
-    time.sleep(10) 
+@app.context_processor
+def inject_values():
+    return {'temperature': getattr(app, 'temperature', None), 'humidity': getattr(app, 'humidity', None)}
 
-    
-@app.route('/data', methods=["GET", "POST"])
-def data():
-    # Data Format
-    # [TIME, Temperature, Humidity]
-
-    Temperature = temp[0]
-    Humidity = temp[1]
-
-    data = [time() * 1000, Temperature, Humidity]
-
-    response = make_response(json.dumps(data))
-
-    response.content_type = 'application/json'
-
-    return response
-# ser.close()
-if __name__ == "__main__":
-    app.run(debug=True)
+if __name__ == '__main__':
+    app.run()
