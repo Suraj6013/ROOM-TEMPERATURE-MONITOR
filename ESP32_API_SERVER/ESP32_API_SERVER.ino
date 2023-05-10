@@ -25,8 +25,8 @@ void handleRoot() {
   StaticJsonBuffer<1024> jsonBuffer;
 
   JsonObject& root = jsonBuffer.createObject();
-  root["battery_volt"] = data[0];
-  root["pos_x"] = data[1];
+  root["Temperature"] = data[0];
+  root["Humidity"] = data[1];
 
   root.printTo(Json);  //Store JSON in String variable
   server.send(200, "text/html", Json + webPage);
@@ -64,23 +64,5 @@ void loop() {
   data[0] = temperature_c ;
   delay(2000);
 
-
-  //  if (Serial.available() > 0) {
-  //
-  //
-  ////    data[0] = x;
-  //
-  //
-  ////    data[1]= y;
-  //
-  //
-  //
-  //
-  ////    for (int i = 0; i < 2; i++) {
-  ////      data[i] = Serial.read();
-  ////    }
-  ////  }
-  //
-  //}
   server.handleClient();
 }
