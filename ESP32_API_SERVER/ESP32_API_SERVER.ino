@@ -18,7 +18,7 @@ WebServer server(80);
 int data[2];
 
 void handleRoot() {
-  String webPage = "<script> setTimeout('location.reload(true);', 1000);</script>";
+  String webPage = " " ;//<script> setTimeout('location.reload(true);', 1000);</script>";
   String Json;
 
   // Allocate JsonBuffer
@@ -64,5 +64,23 @@ void loop() {
   data[0] = temperature_c ;
   delay(2000);
 
+
+  //  if (Serial.available() > 0) {
+  //
+  //
+  ////    data[0] = x;
+  //
+  //
+  ////    data[1]= y;
+  //
+  //
+  //
+  //
+  ////    for (int i = 0; i < 2; i++) {
+  ////      data[i] = Serial.read();
+  ////    }
+  ////  }
+  //
+  //}
   server.handleClient();
 }
