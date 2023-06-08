@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>    
+    
+    <script>setTimeout('location.reload(true);', 100000);</script>
+    <link rel="stylesheet" type="text/css" href='static/css/style.css'>
+    <script src="static/javascript/script.js"></script>
+  
+  </head>
+  <header>
+    <title>Room Environment Dashboard style </title>
+
+  </header>  
+  <body class="container-fluid">
+    <h1>TEMPERATURE  &  HUMIDITY  MONITOR</h1>
+    <p>Current Temperature: {{ temperature }}&deg;C</p> 
+    <p>Current Humidity: {{ humidity }}%</p>
+    <br/>
+    <!-- <div>
+      <img src="chart.png" width="550" height="350">
+    </div> -->
+    
+  </body>
+  <footer>
+    <button onclick="showMessageBox()">INFO CHART</button>
+
+    <div id="messageBoxOverlay">
+      <div id="messageBox">
+        <span id="messageText"></span>
+        <br>
+        <img src="static/css/chart.png" alt="temp & humidity chart">
+        <button onclick="hideMessageBox()">OK</button>
+      </div>      
+    </div>
+
+  </footer>
+</html>

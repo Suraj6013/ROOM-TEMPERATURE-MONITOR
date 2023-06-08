@@ -1,0 +1,71 @@
+*{
+  text-align: center;
+}
+html{
+  background-color: #2e3336;;
+  background-image: url("3409297.jpg") ;
+  background-size: cover;
+}
+h1{
+  font-family:sans-serif;
+  font-size: xx-large;
+  color: white; 
+  text-align:center;
+  padding-top: 4em;
+}
+body{
+  padding: 2em;
+}
+
+p{ 
+  font-family: "Lato", sans-serif;
+  font-size: xx-large;
+  margin: 1em;
+  text-align: center;
+  padding: 1em 1em;
+  cursor: pointer;
+  display: inline-block;
+  border: 1px solid gray;
+  box-sizing: border-box;
+  border-radius: 0%;
+  box-shadow: 2px 2px 1px rgba(238, 230, 230, 0.384);
+  background-color: wheat;
+  color: rgb(5, 5, 63);
+  
+}
+
+/* div{
+  align-items: center;
+ 
+  padding: 10em 20em;
+} */
+
+
+
+#messageBoxOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+#messageBox {
+  background-color: white;
+  padding: 100px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+button{
+  color: aliceblue;
+  margin-top: 10px;
+  border-color: purple;
+  background-color: purple;
+}
+
+
