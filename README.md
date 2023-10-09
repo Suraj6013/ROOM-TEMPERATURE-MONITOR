@@ -3,7 +3,7 @@ An IOT based Dashboard to monitor room temperature and humidity using ESP32 and 
 
 <br>
 
-#System Components 
+# System Components 
 
 1. A ESP32 connected to a temperature sensor <br>
 2. An Asynchronous web server hosted on the ESP32 <br> 
